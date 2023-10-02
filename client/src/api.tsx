@@ -1,5 +1,5 @@
 // api.ts
-const defaultApiUrl = 'http://localhost:3001/api/todos';
+const defaultApiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api/todos';
 // Todo型をエクスポート
 export interface Todo {
     id: number;

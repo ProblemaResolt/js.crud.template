@@ -1,28 +1,33 @@
 // ./src\app\TodoList.tsx
 import { useEffect, useState } from 'react';
+import { TodoCreateForm } from '../component/TodoCreateForm';
+import { fetchTodos  } from '../api';
 
-interface Todo {
-  id: number;
-  title: string;
-  completed: boolean;
-  createdAt:string;
-  updatedAt:string;
-}
-
+export interface Todo {
+    id: number;
+    title: string;
+    completed: boolean;
+    createdAt: string;
+    updatedAt: string;
+  }
 function TodoList() {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api/todos';
 
   useEffect(() => {
-    fetch(apiUrl)
-      .then((response) => response.json())
+    const apiUrl = process.env.REACT_APP_API_URL;
+    fetchTodos(apiUrl)
       .then((data) => setTodos(data))
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
+  const handleTodoCreated = (newTodo: Todo) => {
+    setTodos([...todos, newTodo]);
+  };
+
   return (
     <div>
       <h1>Todo List</h1>
+      <TodoCreateForm onTodoCreated={handleTodoCreated} />
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>

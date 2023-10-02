@@ -1,33 +1,38 @@
 import React, { useState } from 'react';
 import { Todo } from '../app/TodoList';
 
-interface TodoEditFormProps {
-    todo: Todo; // Todo オブジェクトの型
-    onUpdateTodo: (updatedTodo: Todo) => void; // 更新コールバック関数の型
-  }
+const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api/todos';
 
-  export function TodoEditForm({ todo, onUpdateTodo }: TodoEditFormProps) {
+interface TodoEditFormProps {
+  todo: Todo;
+  onUpdateTodo: (updatedTodo: Todo) => void;
+}
+
+export function TodoEditForm({ todo, onUpdateTodo }: TodoEditFormProps) {
   const [editedTitle, setEditedTitle] = useState(todo.title);
+  const [editedCompleted, setEditedCompleted] = useState(todo.completed);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditedTitle(e.target.value);
   };
 
+  const handleCompletedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEditedCompleted(e.target.checked); // チェックボックスの状態をブーリアン値として設定
+  };
+
   const handleUpdateTodo = async () => {
     try {
-      // サーバーに編集を送信
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api/todos';
       const response = await fetch(`${apiUrl}/${todo.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ title: editedTitle, completed: todo.completed }),
+        body: JSON.stringify({ title: editedTitle, completed: editedCompleted }),
       });
 
       if (response.ok) {
         const updatedTodo = await response.json();
-        onUpdateTodo(updatedTodo); // 親コンポーネントに更新を通知
+        onUpdateTodo(updatedTodo);
       } else {
         const errorMessage = await response.text();
         console.error(`Todoの編集に失敗しました: ${errorMessage}`);
@@ -40,6 +45,7 @@ interface TodoEditFormProps {
   return (
     <div>
       <input type="text" value={editedTitle} onChange={handleTitleChange} />
+      <input type="checkbox" checked={editedCompleted} onChange={handleCompletedChange} /> {/* チェックボックス */}
       <button onClick={handleUpdateTodo}>更新</button>
     </div>
   );

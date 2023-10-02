@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "target": "ES6",                  // コンパイル先のECMAScriptバージョン
+      "module": "CommonJS",             // モジュール方式 (CommonJS、ES6など)
+      "outDir": "./dist",               // コンパイル結果の出力先ディレクトリ
+      "rootDir": "./src",               // ソースコードのルートディレクトリ
+      "strict": true,                   // 厳格な型チェックを有効にする
+      "esModuleInterop": true,          // ESモジュールとCommonJSのインターフォップをサポート
+      "skipLibCheck": true,             // 型定義ファイルの型チェックをスキップ
+      "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true,        // .jsonファイルをモジュールとして扱う
+      "baseUrl": "./",                  // ルートディレクトリのベースパス
+      "paths": {
+        "*": ["node_modules/*", "src/types/*"]
+      },
+      "typeRoots": ["./src/types", "./node_modules/@types"],
+      "types": ["node"]
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules"]
+  }
+  

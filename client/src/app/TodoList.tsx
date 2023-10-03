@@ -61,21 +61,34 @@ function TodoList() {
     <div>
       <h1>Todo List</h1>
       <TodoCreateForm onTodoCreated={handleTodoCreated} />
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
+<table className="u-full-width">
+  <thead>
+    <tr>
+      <td>
+        Topic
+      </td>
+      <td>
+        Edit
+      </td>
+      <td>
+        Delete
+      </td>
+    </tr>
+  </thead>
+  {todos.map((todo) => (
+  <tbody key={todo.id}>
             {editTodoId === todo.id ? (
               <TodoEditForm todo={todo} onUpdateTodo={handleUpdateTodo} />
             ) : (
-              <>
-                {todo.title} - {todo.completed ? 'Completed' : 'Not Completed'}
-                <button onClick={() => handleEditClick(todo.id)}>編集</button>
-                <button onClick={() => handleDeleteTodo(todo.id)}>削除</button>
-              </>
+              <tr>
+                <td>{todo.title} - {todo.completed ? 'Completed' : 'Not Completed'}</td>
+                <td><button onClick={() => handleEditClick(todo.id)}>編集</button></td>
+                <td><button onClick={() => handleDeleteTodo(todo.id)}>削除</button></td>
+            </tr>
             )}
-          </li>
+            </tbody>
         ))}
-      </ul>
+</table>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Todo } from '../app/TodoList';
+import { Todo } from '../../TodoList';
 
 const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api/todos';
 
@@ -43,10 +43,11 @@ export function TodoEditForm({ todo, onUpdateTodo }: TodoEditFormProps) {
   };
 
   return (
-    <div>
-      <input type="text" value={editedTitle} onChange={handleTitleChange} />
-      <input type="checkbox" checked={editedCompleted} onChange={handleCompletedChange} /> {/* チェックボックス */}
-      <button onClick={handleUpdateTodo}>更新</button>
-    </div>
+    <tr>
+      <td><input type="text" value={editedTitle} onChange={handleTitleChange} /></td>
+      <td><input type="checkbox" checked={editedCompleted} onChange={handleCompletedChange} /> </td>
+      <td></td>
+      <td><button onClick={handleUpdateTodo}>更新</button></td>
+    </tr>
   );
 }

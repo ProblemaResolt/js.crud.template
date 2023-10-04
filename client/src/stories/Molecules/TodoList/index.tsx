@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { TodoCreateForm } from '../component/TodoCreateForm';
-import { fetchTodos } from '../api';
-import { TodoEditForm } from '../component/TodoEditForm';
+import { TodoCreateForm } from './TodoCreateForm';
+import { fetchTodos } from '../../../api';
+import { TodoEditForm } from './TodoEditForm';
 
 export interface Todo {
   id: number;
@@ -13,7 +13,7 @@ export interface Todo {
 
 const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api/todos';
 
-function TodoList() {
+export const TodoList: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [editTodoId, setEditTodoId] = useState<number | null>(null);
 
@@ -61,23 +61,38 @@ function TodoList() {
     <div>
       <h1>Todo List</h1>
       <TodoCreateForm onTodoCreated={handleTodoCreated} />
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
+<table className="u-full-width">
+  <thead>
+    <tr>
+      <td>
+        Topic
+      </td>
+      <td>
+        Complet
+      </td>
+      <td>
+        Edit
+      </td>
+      <td>
+        Delete
+      </td>
+    </tr>
+  </thead>
+  {todos.map((todo) => (
+  <tbody key={todo.id}>
             {editTodoId === todo.id ? (
               <TodoEditForm todo={todo} onUpdateTodo={handleUpdateTodo} />
             ) : (
-              <>
-                {todo.title} - {todo.completed ? 'Completed' : 'Not Completed'}
-                <button onClick={() => handleEditClick(todo.id)}>編集</button>
-                <button onClick={() => handleDeleteTodo(todo.id)}>削除</button>
-              </>
+              <tr>
+                <td>{todo.title}</td>
+                <td>{todo.completed ? 'Completed' : 'Not Completed'}</td>
+                <td><button onClick={() => handleEditClick(todo.id)}>編集</button></td>
+                <td><button onClick={() => handleDeleteTodo(todo.id)}>削除</button></td>
+            </tr>
             )}
-          </li>
+            </tbody>
         ))}
-      </ul>
+</table>
     </div>
   );
 }
-
-export default TodoList;

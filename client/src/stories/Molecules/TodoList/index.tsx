@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { TodoCreateForm } from '../component/TodoCreateForm';
-import { fetchTodos } from '../api';
-import { TodoEditForm } from '../component/TodoEditForm';
+import { TodoCreateForm } from './TodoCreateForm';
+import { fetchTodos } from '../../../api';
+import { TodoEditForm } from './TodoEditForm';
 
 export interface Todo {
   id: number;
@@ -13,7 +13,7 @@ export interface Todo {
 
 const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api/todos';
 
-function TodoList() {
+export const TodoList: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [editTodoId, setEditTodoId] = useState<number | null>(null);
 
@@ -68,6 +68,9 @@ function TodoList() {
         Topic
       </td>
       <td>
+        Complet
+      </td>
+      <td>
         Edit
       </td>
       <td>
@@ -81,7 +84,8 @@ function TodoList() {
               <TodoEditForm todo={todo} onUpdateTodo={handleUpdateTodo} />
             ) : (
               <tr>
-                <td>{todo.title} - {todo.completed ? 'Completed' : 'Not Completed'}</td>
+                <td>{todo.title}</td>
+                <td>{todo.completed ? 'Completed' : 'Not Completed'}</td>
                 <td><button onClick={() => handleEditClick(todo.id)}>編集</button></td>
                 <td><button onClick={() => handleDeleteTodo(todo.id)}>削除</button></td>
             </tr>
@@ -92,5 +96,3 @@ function TodoList() {
     </div>
   );
 }
-
-export default TodoList;

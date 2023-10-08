@@ -3,3 +3,5 @@ client/node_modules/
 client/.yarnrc
 client/.yarn/releases/yarn-1.22.19.cjs
 .env
+api/.env
+client/.env

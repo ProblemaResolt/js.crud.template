@@ -17,3 +17,30 @@ model Todo {
   title     String
   completed Boolean  @default(false)
 }
+
+// アプリケーションで使用するモデル
+model Post {
+  id        Int     @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean @default(false)
+  author    User?   @relation(fields:  [authorId], references: [id])
+  authorId  Int?
+  @@unique([authorId, title])
+  @@index(fields: [title, content], name: "main_index")
+}
+
+model Users {
+  id    Int     @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email String  @unique
+  name  String?
+  posts Post[]
+  role    Role     @default(USER)
+}
+
+enum Role {
+  USER
+  ADMIN
+}

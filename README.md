@@ -34,19 +34,14 @@ yarn install
 ```
 
 ## シードデータ登録
-```command
- npm init -y
-```
 
 ### @prisma/client が初期化
 ```command
- npx prisma generate
+ yarn prisma:migrate
 ```
-### DB SEED
+### DB SEED 登録
 ```command
- npx prisma db seed
-
- yarn watch
+ prisma:gen
 ```
 
 ## prisma studioを起動する
@@ -57,5 +52,3 @@ npx prisma studio
 これでとりあえずうまくいくはず．．．
 
 本番環境のＵＰとか誰か教えて．．．
-
-今後の予定は認証機能とかその辺りをやっていきたいと思っています。

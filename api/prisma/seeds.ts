@@ -8,7 +8,7 @@ async function seedDatabase() {
     // パスワードのハッシュ化
     const hashedPassword = await bcrypt.hash('your_password_here', 10); // パスワードをハッシュ化
 
-    const user1 = await prisma.users.create({
+    const user1 = await prisma.user.create({
       data: {
         email: 'user1@example.com',
         name: 'User 1',
@@ -17,7 +17,7 @@ async function seedDatabase() {
       },
     });
     
-    const user2 = await prisma.users.create({
+    const user2 = await prisma.user.create({
       data: {
         email: 'user2@example.com', // 異なるメールアドレスを使用
         name: 'User 2',

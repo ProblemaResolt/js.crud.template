@@ -1,13 +1,22 @@
 import express, { Request, Response, NextFunction } from 'express';
+import path from "path";
+import bodyParser from "body-parser";
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
+import session from "express-session";
+import * as passportConfig from "./config/passport";
+import * as routers from "./routes";
 
 dotenv.config();
 
 const app = express();
 const prisma = new PrismaClient();
 const PORT = 3001;
+
+app.use(express.static(path.join(__dirname, "../public")));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // JSONおよびURLエンコードされたデータのパースを有効にする
 app.use(express.json());
@@ -18,6 +27,22 @@ app.use(cors({
   credentials: true,
   optionsSuccessStatus: 200,
 }));
+
+app.use(
+  session({
+    secret: "keyboard-cat",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+passportConfig.configure(app);
+
+app.use("/users", routers.user);
+app.use("/posts", routers.post);
+app.use("/auth", routers.auth);
+
+
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
 });

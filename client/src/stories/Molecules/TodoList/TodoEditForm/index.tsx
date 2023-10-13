@@ -43,11 +43,11 @@ export function TodoEditForm({ todo, onUpdateTodo }: TodoEditFormProps) {
   };
 
   return (
-    <tr>
-      <td><input type="text" value={editedTitle} onChange={handleTitleChange} /></td>
-      <td><input type="checkbox" checked={editedCompleted} onChange={handleCompletedChange} /> </td>
-      <td></td>
-      <td><button onClick={handleUpdateTodo}>更新</button></td>
+    <tr className=''>
+      <td className=''><input type="text" value={editedTitle} onChange={handleTitleChange} /></td>
+      <td className=''><input type="checkbox" checked={editedCompleted} onChange={handleCompletedChange} /> </td>
+      <td className=''>----</td>
+      <td className=''><button onClick={handleUpdateTodo}>更新</button></td>
     </tr>
   );
 }

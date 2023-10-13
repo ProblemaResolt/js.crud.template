@@ -1,3 +1,12 @@
 @import 'react-skeleton-css/styles/skeleton.2.0.4.css';
 // normalize is also available
 @import 'react-skeleton-css/styles/normalize.3.0.2.css';
+
+table {
+    width: 100%;
+    table-layout: fixed;
+  }
+
+table td {
+    padding:2rem;
+  }

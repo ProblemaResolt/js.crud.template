@@ -83,11 +83,11 @@ export const TodoList: React.FC = () => {
             {editTodoId === todo.id ? (
               <TodoEditForm todo={todo} onUpdateTodo={handleUpdateTodo} />
             ) : (
-              <tr>
-                <td>{todo.title}</td>
-                <td>{todo.completed ? 'Completed' : 'Not Completed'}</td>
-                <td><button onClick={() => handleEditClick(todo.id)}>編集</button></td>
-                <td><button onClick={() => handleDeleteTodo(todo.id)}>削除</button></td>
+              <tr className=''>
+                <td className=''>{todo.title}</td>
+                <td className=''>{todo.completed ? 'Completed' : 'Not Completed'}</td>
+                <td className=''><button onClick={() => handleEditClick(todo.id)}>編集</button></td>
+                <td className=''><button onClick={() => handleDeleteTodo(todo.id)}>削除</button></td>
             </tr>
             )}
             </tbody>

@@ -44,14 +44,16 @@ export function TodoCreateForm({ onTodoCreated }: TodoCreateFormProps) {
   };
 
   return (
-    <div>
+    <div className='row'>
       <input
+        className='two-thirds column'
         type="text"
         placeholder="新しいTodoを入力"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <button onClick={handleCreateTodo}>作成</button>
+      <button
+        className='one-third column' onClick={handleCreateTodo}>作成</button>
     </div>
   );
 }

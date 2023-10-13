@@ -42,8 +42,8 @@
     "yarn": "^1.22.19"
   },
   "scripts": {
-    "dev": "nodemon src/index.ts",
-    "start": "ts-node src/index.ts",
+    "start": "nodemon src/index.ts",
+    "dev": "ts-node src/index.ts",
     "prisma:migrate": "npx prisma migrate dev",
     "prisma:gen": "npx prisma generate"
   },

@@ -1,30 +1,33 @@
-.storybook-button {
-  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  border: 0;
-  border-radius: 3em;
+@import 'react-skeleton-css/styles/skeleton.2.0.4.css';
+// normalize is also available
+@import 'react-skeleton-css/styles/normalize.3.0.2.css';
+
+.button {
   cursor: pointer;
   display: inline-block;
   line-height: 1;
 }
-.storybook-button--primary {
+.button-primary {
   color: white;
   background-color: #1ea7fd;
 }
-.storybook-button--secondary {
+.button-secondary {
   color: #333;
   background-color: transparent;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
 }
-.storybook-button--small {
-  font-size: 12px;
-  padding: 10px 16px;
+
+.--small {
+  font-size: 0.5rem;
+  padding: 0.5rem 1.0rem;
 }
-.storybook-button--medium {
-  font-size: 14px;
-  padding: 11px 20px;
+
+.--medium {
+  font-size: 1.2rem;
+  padding: 0.5rem 1.0rem;
 }
-.storybook-button--large {
-  font-size: 16px;
-  padding: 12px 24px;
+
+.--large {
+  font-size: 2.0rem;
+  padding: 0.5rem 1.0rem;
 }

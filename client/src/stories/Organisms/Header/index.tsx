@@ -16,7 +16,7 @@ interface HeaderProps {
 
 export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps) => (
   <header>
-    <div className="storybook-header">
+    <div className="header">
         <h1>Title</h1>
       <div>
         {user ? (
@@ -24,12 +24,12 @@ export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps
             <span className="welcome">
               Welcome, <b>{user.name}</b>!
             </span>
-            <Button size="small" onClick={onLogout} label="Log out" />
+            <Button size="medium" onClick={onLogout} label="Log out" />
           </>
         ) : (
           <>
-            <Button size="small" onClick={onLogin} label="Log in" />
-            <Button primary size="small" onClick={onCreateAccount} label="Sign up" />
+            <Button size="medium" onClick={onLogin} label="Log in" />
+            <Button primary size="medium" onClick={onCreateAccount} label="Sign up" />
           </>
         )}
       </div>

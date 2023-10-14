@@ -44,6 +44,7 @@ model User {
   posts    Post[]
   profile  Profile?
   role      Role     @default(USER)
+  authCode String?
 }
 
 enum Role {

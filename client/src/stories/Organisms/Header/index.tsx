@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Button } from '../../Atom/Button';
+import { Auth } from  '../../Molecules/Auth';
 import './header.scss';
 
 type User = {
@@ -27,10 +28,13 @@ export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps
             <Button size="medium" onClick={onLogout} label="Log out" />
           </>
         ) : (
-          <>
-            <Button size="medium" onClick={onLogin} label="Log in" />
-            <Button primary size="medium" onClick={onCreateAccount} label="Sign up" />
-          </>
+          <Auth onLogin={function (): void {
+              throw new Error('Function not implemented.');
+            } } onLogout={function (): void {
+              throw new Error('Function not implemented.');
+            } } onCreateAccount={function (): void {
+              throw new Error('Function not implemented.');
+            } } />
         )}
       </div>
     </div>

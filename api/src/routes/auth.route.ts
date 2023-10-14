@@ -190,19 +190,31 @@ function generateAuthCode() {
 }
 
 async function verifyAuthCode(email: string, authCode: string) {
-  // データベースから認証コードを取得する
+  // Get the user from the database
   const user = await prisma.user.findUnique({ where: { email } });
+
+  // If the user does not exist, return an error
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  // Get the auth code and expired at date from the database
   const authCodeFromDB = user.authCode;
+  const authCodeExpiredAtFromDB = user.authCodeExpiredAt;
 
-  // 認証コードの有効期限を確認する
+  // If authCodeExpiredAtFromDB is null, return an error
+  if (authCodeExpiredAtFromDB === null) {
+    throw new Error("Auth code expired");
+  }
+
+  // Check the auth code expiration date
   const now = new Date();
-  const expiredAt = new Date(user.authCodeExpiredAt);
 
-  if (now > expiredAt) {
+  if (now > authCodeExpiredAtFromDB) {
     return false;
   }
 
-  // 取得した認証コードと引数のauthCodeが一致すれば、認証コードが有効であると見なす
+  // Check if the auth code matches the provided auth code
   if (authCodeFromDB === authCode) {
     return true;
   } else {

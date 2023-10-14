@@ -14,6 +14,7 @@ async function seedDatabase() {
         name: 'User 1',
         password: hashedPassword, // ハッシュ化したパスワードを保存
         role: 'USER',
+        authCode: '123456',
       },
     });
     
@@ -23,6 +24,7 @@ async function seedDatabase() {
         name: 'User 2',
         password: hashedPassword, // ハッシュ化したパスワードを保存
         role: 'ADMIN',
+        authCode: '12345',
       },
     });
 

@@ -45,6 +45,7 @@ model User {
   profile  Profile?
   role      Role     @default(USER)
   authCode String?
+  authCodeExpiredAt DateTime?
 }
 
 enum Role {

@@ -1,5 +1,5 @@
-"use client"
-import React from 'react';
+"use client";
+import React from "react";
 import { TodoList } from "../stories/Molecules/TodoList";
 import { Header } from "../stories/Organisms/Header";
 
@@ -14,11 +14,11 @@ export default function Home() {
     <main>
       <Header
         user={user}
-        onLogin={() => setUser({ name: 'Jane Doe' })}
+        onLogin={() => setUser({ name: "Jane Doe" })}
         onLogout={() => setUser(undefined)}
-        onCreateAccount={() => setUser({ name: 'Jane Doe' })}
-  />
+        onCreateAccount={() => setUser({ name: "Jane Doe" })}
+      />
       <TodoList />
     </main>
-  )
+  );
 }

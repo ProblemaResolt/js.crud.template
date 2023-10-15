@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { Todo } from '../../TodoList';
+import React, { useState } from "react";
+import { Todo } from "../../TodoList";
 
-const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api/todos';
+const apiUrl =
+  process.env.REACT_APP_API_URL || "http://localhost:3001/api/todos";
 
 interface TodoEditFormProps {
   todo: Todo;
@@ -23,11 +24,14 @@ export function TodoEditForm({ todo, onUpdateTodo }: TodoEditFormProps) {
   const handleUpdateTodo = async () => {
     try {
       const response = await fetch(`${apiUrl}/${todo.id}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title: editedTitle, completed: editedCompleted }),
+        body: JSON.stringify({
+          title: editedTitle,
+          completed: editedCompleted,
+        }),
       });
 
       if (response.ok) {
@@ -38,16 +42,26 @@ export function TodoEditForm({ todo, onUpdateTodo }: TodoEditFormProps) {
         console.error(`Todoの編集に失敗しました: ${errorMessage}`);
       }
     } catch (error) {
-      console.error('エラー:', error);
+      console.error("エラー:", error);
     }
   };
 
   return (
-    <tr className=''>
-      <td className=''><input type="text" value={editedTitle} onChange={handleTitleChange} /></td>
-      <td className=''><input type="checkbox" checked={editedCompleted} onChange={handleCompletedChange} /> </td>
-      <td className=''>----</td>
-      <td className=''><button onClick={handleUpdateTodo}>更新</button></td>
+    <tr className="">
+      <td className="">
+        <input type="text" value={editedTitle} onChange={handleTitleChange} />
+      </td>
+      <td className="">
+        <input
+          type="checkbox"
+          checked={editedCompleted}
+          onChange={handleCompletedChange}
+        />{" "}
+      </td>
+      <td className="">----</td>
+      <td className="">
+        <button onClick={handleUpdateTodo}>更新</button>
+      </td>
     </tr>
   );
 }

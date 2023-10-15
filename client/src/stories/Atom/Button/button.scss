@@ -1,6 +1,6 @@
-@import 'react-skeleton-css/styles/skeleton.2.0.4.css';
+@import "react-skeleton-css/styles/skeleton.2.0.4.css";
 // normalize is also available
-@import 'react-skeleton-css/styles/normalize.3.0.2.css';
+@import "react-skeleton-css/styles/normalize.3.0.2.css";
 
 .button {
   cursor: pointer;
@@ -19,15 +19,15 @@
 
 .--small {
   font-size: 0.5rem;
-  padding: 0.5rem 1.0rem;
+  padding: 0.5rem 1rem;
 }
 
 .--medium {
   font-size: 1.2rem;
-  padding: 0.5rem 1.0rem;
+  padding: 0.5rem 1rem;
 }
 
 .--large {
-  font-size: 2.0rem;
-  padding: 0.5rem 1.0rem;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
 }

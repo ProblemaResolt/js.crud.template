@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./modal.scss"
+import "./modal.scss";
 
 interface ModalProps {
   isOpen: boolean;

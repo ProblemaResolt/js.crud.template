@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { Button } from '../../Atom/Button';
-import { Auth } from  '../../Molecules/Auth';
-import './header.scss';
+import { Button } from "../../Atom/Button";
+import { Auth } from "../../Molecules/Auth";
+import "./header.scss";
 
 type User = {
   name: string;
@@ -15,10 +15,15 @@ interface HeaderProps {
   onCreateAccount: () => void;
 }
 
-export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps) => (
+export const Header = ({
+  user,
+  onLogin,
+  onLogout,
+  onCreateAccount,
+}: HeaderProps) => (
   <header>
     <div className="header">
-        <h1>Title</h1>
+      <h1>Title</h1>
       <div>
         {user ? (
           <>
@@ -28,13 +33,17 @@ export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps
             <Button size="medium" onClick={onLogout} label="Log out" />
           </>
         ) : (
-          <Auth onLogin={function (): void {
-              throw new Error('Function not implemented.');
-            } } onLogout={function (): void {
-              throw new Error('Function not implemented.');
-            } } onCreateAccount={function (): void {
-              throw new Error('Function not implemented.');
-            } } />
+          <Auth
+            onLogin={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+            onLogout={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+            onCreateAccount={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+          />
         )}
       </div>
     </div>

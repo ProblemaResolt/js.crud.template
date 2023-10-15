@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { TodoCreateForm } from './TodoCreateForm';
-import { fetchTodos } from '../../../api';
-import { TodoEditForm } from './TodoEditForm';
+import React, { useState, useEffect } from "react";
+import { TodoCreateForm } from "./TodoCreateForm";
+import { fetchTodos } from "../../../api";
+import { TodoEditForm } from "./TodoEditForm";
 
 export interface Todo {
   id: number;
@@ -11,7 +11,8 @@ export interface Todo {
   updatedAt: string;
 }
 
-const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api/todos';
+const apiUrl =
+  process.env.REACT_APP_API_URL || "http://localhost:3001/api/todos";
 
 export const TodoList: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -20,7 +21,7 @@ export const TodoList: React.FC = () => {
   useEffect(() => {
     fetchTodos(apiUrl)
       .then((data) => setTodos(data))
-      .catch((error) => console.error('Error fetching data:', error));
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
   const handleTodoCreated = (newTodo: Todo) => {
@@ -33,7 +34,7 @@ export const TodoList: React.FC = () => {
 
   const handleUpdateTodo = (updatedTodo: Todo) => {
     const updatedTodos = todos.map((todo) =>
-      todo.id === updatedTodo.id ? updatedTodo : todo
+      todo.id === updatedTodo.id ? updatedTodo : todo,
     );
     setTodos(updatedTodos);
     setEditTodoId(null);
@@ -41,9 +42,9 @@ export const TodoList: React.FC = () => {
   const handleDeleteTodo = async (id: number) => {
     try {
       const response = await fetch(`${apiUrl}/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
-  
+
       if (response.ok) {
         // 削除成功の場合、Todoリストから削除
         const updatedTodos = todos.filter((todo) => todo.id !== id);
@@ -53,46 +54,46 @@ export const TodoList: React.FC = () => {
         console.error(`Todoの削除に失敗しました: ${errorMessage}`);
       }
     } catch (error) {
-      console.error('エラー:', error);
+      console.error("エラー:", error);
     }
-  };  
+  };
 
   return (
     <div>
       <h1>Todo List</h1>
       <TodoCreateForm onTodoCreated={handleTodoCreated} />
-<table className="u-full-width">
-  <thead>
-    <tr>
-      <td>
-        Topic
-      </td>
-      <td>
-        Complet
-      </td>
-      <td>
-        Edit
-      </td>
-      <td>
-        Delete
-      </td>
-    </tr>
-  </thead>
-  {todos.map((todo) => (
-  <tbody key={todo.id}>
+      <table className="u-full-width">
+        <thead>
+          <tr>
+            <td>Topic</td>
+            <td>Complet</td>
+            <td>Edit</td>
+            <td>Delete</td>
+          </tr>
+        </thead>
+        {todos.map((todo) => (
+          <tbody key={todo.id}>
             {editTodoId === todo.id ? (
               <TodoEditForm todo={todo} onUpdateTodo={handleUpdateTodo} />
             ) : (
-              <tr className=''>
-                <td className=''>{todo.title}</td>
-                <td className=''>{todo.completed ? 'Completed' : 'Not Completed'}</td>
-                <td className=''><button onClick={() => handleEditClick(todo.id)}>編集</button></td>
-                <td className=''><button onClick={() => handleDeleteTodo(todo.id)}>削除</button></td>
-            </tr>
+              <tr className="">
+                <td className="">{todo.title}</td>
+                <td className="">
+                  {todo.completed ? "Completed" : "Not Completed"}
+                </td>
+                <td className="">
+                  <button onClick={() => handleEditClick(todo.id)}>編集</button>
+                </td>
+                <td className="">
+                  <button onClick={() => handleDeleteTodo(todo.id)}>
+                    削除
+                  </button>
+                </td>
+              </tr>
             )}
-            </tbody>
+          </tbody>
         ))}
-</table>
+      </table>
     </div>
   );
-}
+};

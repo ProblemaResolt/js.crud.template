@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const Toast = ({ message, type }:any) => {
+export const Toast = ({ message, type }: any) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const handleClose = () => {
@@ -12,9 +12,7 @@ export const Toast = ({ message, type }:any) => {
       className={`toast ${type}`}
       style={{ display: isVisible ? "block" : "none" }}
     >
-      <div>
-        {message}
-      </div>
+      <div>{message}</div>
       <button onClick={handleClose}>閉じる</button>
     </div>
   );

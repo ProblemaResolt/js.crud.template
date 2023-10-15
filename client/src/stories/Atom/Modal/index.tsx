@@ -21,7 +21,6 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       onClick={handleModalClick}
     >
       <div className="modal-content">
-      <h1>Login</h1>
         {children}
         <button onClick={onClose}>cancel</button>
       </div>

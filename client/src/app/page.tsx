@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { TodoList } from "../stories/Molecules/TodoList";
-import { Header } from "../stories/Organisms/Header";
+import { TodoList } from "@/stories/Molecules/TodoList";
+import { Header } from "@/stories/Organisms/Header";
 
 type User = {
   name: string;

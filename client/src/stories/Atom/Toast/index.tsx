@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "@/stories/Atom//Button";
 
 export const Toast = ({ message, type }: any) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,7 +14,7 @@ export const Toast = ({ message, type }: any) => {
       style={{ display: isVisible ? "block" : "none" }}
     >
       <div>{message}</div>
-      <button onClick={handleClose}>閉じる</button>
+      <Button onClick={handleClose} label="閉じる"/>
     </div>
   );
 };

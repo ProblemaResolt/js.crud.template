@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Button } from "../../Atom/Button";
-import { Auth } from "../../Molecules/Auth";
+import { Button } from "@/stories/Atom/Button";
+import { Auth } from "@/stories/Molecules/Auth";
 import "./header.scss";
 
 type User = {

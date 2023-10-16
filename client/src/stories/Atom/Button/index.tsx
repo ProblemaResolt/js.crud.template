@@ -18,6 +18,7 @@ interface ButtonProps {
    * Button contents
    */
   label: string;
+  type?: "button" | "submit" | "reset"; // type属性を追加
   /**
    * Optional click handler
    */
@@ -32,12 +33,13 @@ export const Button = ({
   size = "medium",
   backgroundColor,
   label,
+  type = "button", // type属性をデフォルトで "button" に設定
   ...props
 }: ButtonProps) => {
   const mode = primary ? "button-primary" : "";
   return (
     <button
-      type="button"
+      type={type} // type属性を設定
       className={[mode, `--${size}`].join(" ")}
       style={{ backgroundColor }}
       {...props}

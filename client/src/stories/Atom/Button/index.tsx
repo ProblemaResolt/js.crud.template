@@ -1,5 +1,5 @@
-import React from 'react';
-import './button.scss';
+import React from "react";
+import "./button.scss";
 
 interface ButtonProps {
   /**
@@ -13,11 +13,12 @@ interface ButtonProps {
   /**
    * How large should the button be?
    */
-  size?: 'small' | 'medium' | 'large';
+  size?: "small" | "medium" | "large";
   /**
    * Button contents
    */
   label: string;
+  type?: "button" | "submit" | "reset"; // type属性を追加
   /**
    * Optional click handler
    */
@@ -29,16 +30,17 @@ interface ButtonProps {
  */
 export const Button = ({
   primary = false,
-  size = 'medium',
+  size = "medium",
   backgroundColor,
   label,
+  type = "button", // type属性をデフォルトで "button" に設定
   ...props
 }: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  const mode = primary ? "button-primary" : "";
   return (
     <button
-      type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
+      type={type} // type属性を設定
+      className={[mode, `--${size}`].join(" ")}
       style={{ backgroundColor }}
       {...props}
     >

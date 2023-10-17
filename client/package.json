@@ -17,7 +17,7 @@
     "vite": "^4.4.10"
   },
   "resolutions": {
-    "jackspeak": "2.1.1"
+    "jackspeak": "latest"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.4.5",

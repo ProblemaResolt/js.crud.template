@@ -15,8 +15,8 @@
     "react": "latest",
     "react-dom": "latest",
     "vite": "^4.4.10"
-  }, 
-   "resolutions": {
+  },
+  "resolutions": {
     "jackspeak": "2.1.1"
   },
   "devDependencies": {

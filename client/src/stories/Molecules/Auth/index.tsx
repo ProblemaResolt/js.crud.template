@@ -7,6 +7,7 @@ import CreateAccountModal from "@/stories/Molecules/Auth/CreateAccountModal";
 
 type ModalProps = {
   onSubmit: () => void;
+  show: boolean;
 };
 
 type User = {
@@ -19,7 +20,7 @@ interface AuthProps {
   onCreateAccount: (user: User) => void;
 }
 
-export const Auth = ({ user, onLogin, onCreateAccount }: AuthProps) => {
+export const Auth = ({ user }: AuthProps) => {
   const [loginModal, setLoginModal] = useState<ModalProps | null>(null);
   const [createAccountModal, setCreateAccountModal] = useState<ModalProps | null>(
     null
@@ -28,14 +29,22 @@ export const Auth = ({ user, onLogin, onCreateAccount }: AuthProps) => {
   const openLoginModal = () => {
     // Modal コンポーネントをレンダーする
     if (loginModal !== undefined) {
-      Modal.show(<LoginModal {...loginModal} />);
+      setLoginModal({
+        ...loginModal,
+        show: true,
+      });
+      Modal.show(loginModal);
     }
   };
 
   const openCreateAccountModal = () => {
     // Modal コンポーネントをレンダーする
     if (createAccountModal !== undefined) {
-      Modal.show(<CreateAccountModal {...createAccountModal} />);
+      setCreateAccountModal({
+        ...createAccountModal,
+        show: true,
+      });
+      Modal.show(createAccountModal);
     }
   };
 
@@ -53,11 +62,11 @@ export const Auth = ({ user, onLogin, onCreateAccount }: AuthProps) => {
   return (
     <div>
       {loginModal && (
-        <LoginModal {...loginModal} />
+        <Modal {...loginModal} />
       )}
       
       {createAccountModal && (
-        <CreateAccountModal {...createAccountModal} />
+        <Modal {...createAccountModal} />
       )}
     </div>
   );

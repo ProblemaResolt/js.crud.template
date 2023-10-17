@@ -1,5 +1,6 @@
-import React, { MouseEventHandler, useState } from "react";
+import React, { useState, MouseEventHandler } from "react";
 import "./modal.scss";
+import { Button } from "@/stories/Atom/Button";
 
 interface ModalProps {
   isOpen: boolean;
@@ -26,8 +27,8 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     >
       <div className="modal-content">
         {children}
-        <button onClick={onsubmit}>submit</button>
-        <button onClick={onClose}>cancel</button>
+        <Button onClick={onsubmit} label="submit" />
+        <Button onClick={onClose} label="cancel" />
       </div>
     </div>
   );

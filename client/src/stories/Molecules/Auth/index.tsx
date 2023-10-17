@@ -5,52 +5,60 @@ import { Modal } from "@/stories/Atom/Modal";
 import LoginModal from "@/stories/Molecules/Auth/LoginModal";
 import CreateAccountModal from "@/stories/Molecules/Auth/CreateAccountModal";
 
+type ModalProps = {
+  onSubmit: () => void;
+};
+
 type User = {
   name: string;
 };
 
 interface AuthProps {
-  user?: User;
-  onLogin: () => void;
-  onCreateAccount: () => void;
+  user: User | undefined;
+  onLogin: (user: User) => void;
+  onCreateAccount: (user: User) => void;
 }
 
 export const Auth = ({ user, onLogin, onCreateAccount }: AuthProps) => {
-  type ModalProps = {
-    onSubmit: () => void;
-  };
-
-  type Modal = React.FC<ModalProps>;
-
-  const [loginModal, setLoginModal] = useState<Modal | null>(null);
-  const [createAccountModal, setCreateAccountModal] = useState<Modal | null>(
+  const [loginModal, setLoginModal] = useState<ModalProps | null>(null);
+  const [createAccountModal, setCreateAccountModal] = useState<ModalProps | null>(
     null
   );
 
   const openLoginModal = () => {
-    const modal = new Modal({
-      props: {
-        onSubmit: onLogin,
-      },
-    });
-    modal.setContent(<LoginModal onSubmit={onLogin} />).open();
-    setLoginModal(modal);
+    // Modal コンポーネントをレンダーする
+    if (loginModal !== undefined) {
+      Modal.show(<LoginModal {...loginModal} />);
+    }
   };
 
   const openCreateAccountModal = () => {
-    const modal = new Modal({
-      props: {
-        onSubmit: onCreateAccount,
-      },
-    });
-    modal.setContent(<CreateAccountModal onSubmit={onCreateAccount} />).open();
-    setCreateAccountModal(modal);
+    // Modal コンポーネントをレンダーする
+    if (createAccountModal !== undefined) {
+      Modal.show(<CreateAccountModal {...createAccountModal} />);
+    }
   };
 
+  // user プロパティが undefined の場合は、onLogin() 関数と onCreateAccount() 関数を呼び出さないようにする
+  if (user === undefined) {
+    return (
+      <div>
+        <Button onClick={openLoginModal} size="medium" label="Login" />
+        <Button onClick={openCreateAccountModal} size="medium" label="Sign up" />
+      </div>
+    );
+  }
+
+  // user プロパティが undefined でない場合は、openLoginModal() 関数と openCreateAccountModal() 関数を呼び出すようにする
   return (
     <div>
-      <Button onClick={openLoginModal} size="medium" label="Login" />
-      <Button onClick={openCreateAccountModal} size="medium" label="Sign up" />
+      {loginModal && (
+        <LoginModal {...loginModal} />
+      )}
+      
+      {createAccountModal && (
+        <CreateAccountModal {...createAccountModal} />
+      )}
     </div>
   );
 };

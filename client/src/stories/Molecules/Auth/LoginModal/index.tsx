@@ -23,7 +23,10 @@ const LoginModal = ({ onSubmit }) => {
       onSubmit();
     } else {
       // 検証に失敗した場合、エラーメッセージを表示する
-      Toast.show(result.message, "error");
+      Toast.show({
+        message: result.message,
+        type: "error",
+      });
     }
   }
 

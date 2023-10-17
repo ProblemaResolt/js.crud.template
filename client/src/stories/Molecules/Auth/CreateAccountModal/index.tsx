@@ -1,10 +1,9 @@
 import React, { useState, useEffect, FormEvent } from "react";
 import { Button } from "@/stories/Atom/Button";
-import { Modal } from "@/stories/Atom/Modal";
 import { Toast } from "@/stories/Atom/Toast";
 import axios from "axios";
 
-const CreateAccountModal = ({ onSubmit }) => {
+export const CreateAccountModal = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { MouseEventHandler, useState } from "react";
 import "./modal.scss";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  show: boolean;
+  onSubmit: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
@@ -15,6 +17,8 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     onClose();
   };
 
+  const onsubmit = () => {};
+
   return (
     <div
       className={isModalVisible ? "modal" : "modal-hidden"}
@@ -22,6 +26,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     >
       <div className="modal-content">
         {children}
+        <button onClick={onsubmit}>submit</button>
         <button onClick={onClose}>cancel</button>
       </div>
     </div>

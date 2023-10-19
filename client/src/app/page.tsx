@@ -1,7 +1,8 @@
 "use client"
 import React from 'react';
-import { TodoList } from "../stories/Molecules/TodoList";
-import { Header } from "../stories/Organisms/Header";
+import { Page } from "../stories/Pages/";
+
+import {useRouter} from 'next/router'
 
 type User = {
   name: string;
@@ -12,13 +13,7 @@ export default function Home() {
 
   return (
     <main>
-      <Header
-        user={user}
-        onLogin={() => setUser({ name: 'Jane Doe' })}
-        onLogout={() => setUser(undefined)}
-        onCreateAccount={() => setUser({ name: 'Jane Doe' })}
-  />
-      <TodoList />
+      <Page />
     </main>
   )
 }

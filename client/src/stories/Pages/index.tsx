@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { Header } from '../Organisms/Header';
+
+import { Login } from '@/stories/Molecules/Login';
+
+import { Header } from '@/stories/Organisms/Header';
 import './page.scss';
 
 type User = {
@@ -18,8 +21,9 @@ export const Page: React.FC = () => {
         onLogout={() => setUser(undefined)}
         onCreateAccount={() => setUser({ name: 'Jane Doe' })}
       />
+      <Login label={'aaaa'} />
 
-      <section className="storybook-page">
+      <section className="page">
         <h2>Pages in Storybook</h2>
         <p>
           We recommend building UIs with a{' '}
